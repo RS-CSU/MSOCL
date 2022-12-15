@@ -1,4 +1,4 @@
-# MSOCL
+# MSOCL（Multiscale Object Contrastive Learning–Derived Few-Shot Object Detection in VHR imagery）
 The code for “Multiscale Object Contrastive Learning–Derived Few-Shot Object Detection in VHR imagery”
 
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ucbdrive/few-shot-object-detection.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ucbdrive/few-shot-object-detection/context:python)
@@ -19,15 +19,6 @@ This repo contains the implementation of our *state-of-the-art* fewshot object d
   pages={1-1},
   doi={10.1109/TGRS.2022.3229041}}
 ```
-
-Arxiv: https://arxiv.org/abs/2103.05950
-
-## Contact
-
-```
-If you have any questions, please contact Bo Sun (bos [at] usc.edu) or Banghuai Li(libanghuai [at] megvii.com)
-```
-
 
 
 ## Installation
@@ -51,8 +42,6 @@ hub.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'```
 ```bash
 python setup.py build develop  # you might need sudo
 ```
-
-
 
 Note: you may need to rebuild FsDet after reinstalling a different build of PyTorch.
 
