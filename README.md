@@ -9,14 +9,15 @@ This repo contains the implementation of our *state-of-the-art* fewshot object d
 ### Bibtex
 
 ```
-@inproceedings{FSCEv1,
- author = {Sun, Bo and Li, Banghuai and Cai, Shengcai and Yuan, Ye and Zhang, Chi},
- title = {FSCE: Few-Shot Object Detection via Contrastive Proposal Encoding},
- booktitle = {Proceedings of the IEEE conference on computer vision and pattern recognition (CVPR)},
- pages    = {TBD},
- month = {June},
- year = {2021}
-}
+@ARTICLE{9984671,
+  author={Chen, Jie and Qin, Dengda and Hou, Dongyang and Zhang, Jun and Deng, Min and Sun, Geng},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={Multiscale Object Contrastive Learning–Derived Few-Shot Object Detection in VHR imagery}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TGRS.2022.3229041}}
 ```
 
 Arxiv: https://arxiv.org/abs/2103.05950
