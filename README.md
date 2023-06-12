@@ -2,7 +2,7 @@
 
 The code for “Multiscale Object Contrastive Learning–Derived Few-Shot Object Detection in VHR imagery”
 
-[![docs](https://img.shields.io/badge/docs-latest-blue)]
+![docs](https://img.shields.io/badge/docs-latest-blue)
 
 This repo contains the implementation of our fewshot object detector, described in our TGRS 2022 paper, [Multiscale Object Contrastive Learning–Derived Few-Shot Object Detection in VHR imagery ](https://ieeexplore.ieee.org/document/9984671). MSOCL is built upon the codebase [FsDet v0.4](https://github.com/ucbdrive/few-shot-object-detection/tags), which released by an ICML 2020 paper [Frustratingly Simple Few-Shot Object Detection](https://arxiv.org/abs/2003.06957).
 
