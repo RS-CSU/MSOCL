@@ -1,0 +1,64 @@
+_BASE_: "../../Base-RCNN-FPN.yaml"
+
+MODEL:
+  WEIGHTS: "../models/FSCE/faster_DIOR_split1/faster_rcnn_R_101_FPN_all1/model_reset_remove.pth"
+#  WEIGHTS: "../models/FSCE/ceshi5/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+
+  BACKBONE:
+    FREEZE: False
+    FREEZE_AT: 5
+
+  PROPOSAL_GENERATOR:
+    FREEZE: False
+  RPN:
+    POST_NMS_TOPK_TRAIN: 2000
+
+  ROI_HEADS:
+    NAME: "ContrastiveROIHeads"
+    NUM_CLASSES: 20
+    OUTPUT_LAYER: "CosineSimOutputLayers"
+    FREEZE_FEAT: False
+    BATCH_SIZE_PER_IMAGE: 256
+#    SCORE_THRESH_TEST: 0.4
+
+  ROI_BOX_HEAD:
+    CONTRASTIVE_BRANCH:
+      TEMPERATURE: 0.2
+      LOSS_WEIGHT: 0.2
+      DECAY:
+        ENABLED: True
+        STEPS: [5000, 10000]
+        RATE: 0.5
+      IOU_THRESHOLD: 0.7  # high credibility proposals provide consistency
+
+INPUT:
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MAX_SIZE_TRAIN: 800
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 800
+  CROP:
+    ENABLED: True
+
+DATASETS:
+  TRAIN: ('voc_2007_trainval_all1_20shot',)
+  TEST: ('voc_2007_test_all1',)
+#  CROP: True
+
+SOLVER:
+  IMS_PER_BATCH: 6
+  BASE_LR: 0.001
+  GAMMA: 0.5
+  STEPS: (100000,)
+  MAX_ITER: 6000
+  CHECKPOINT_PERIOD: 3000
+  WARMUP_ITERS: 40
+
+TEST:
+  AUG:
+    ENABLED: True
+  EVAL_PERIOD: 3000
+
+OUTPUT_DIR: "../models/FSCE/ceshi"

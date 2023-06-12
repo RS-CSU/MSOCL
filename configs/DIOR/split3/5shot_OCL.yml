@@ -1,0 +1,60 @@
+_BASE_: "../../Base-RCNN-FPN.yaml"
+
+MODEL:
+  META_ARCHITECTURE: "SiameseRCNN"
+  WEIGHTS: "../models/MSOCL3/model_reset_remove.pth"
+#  WEIGHTS:  "../models/MSOCL/model_0005999.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+
+  BACKBONE:
+    FREEZE: False
+    FREEZE_AT: 5
+
+  PROPOSAL_GENERATOR:
+    FREEZE: False
+  RPN:
+    POST_NMS_TOPK_TRAIN: 2000
+
+  ROI_HEADS:
+    NAME: "ContrastiveROIHeads"
+    NUM_CLASSES: 20
+    OUTPUT_LAYER: "CosineSimOutputLayers"
+    FREEZE_FEAT: False
+    BATCH_SIZE_PER_IMAGE: 256
+
+  ROI_BOX_HEAD:
+    CONTRASTIVE_BRANCH:
+      TEMPERATURE: 0.2
+      LOSS_WEIGHT: 0.2
+      IOU_THRESHOLD: 0.4
+      MLP_FEATURE_DIM: 256
+
+INPUT:
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MAX_SIZE_TRAIN: 800
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 800
+  CROP:
+    ENABLED: True
+
+DATASETS:
+  TRAIN: ('dior_trainval_all3_5shot',)
+  TEST: ('dior_test_all3',)
+
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.001
+  GAMMA: 0.5
+  STEPS: (5000,7000)
+  MAX_ITER: 3000
+  CHECKPOINT_PERIOD: 3000
+  WARMUP_ITERS: 0
+
+TEST:
+  AUG:
+    ENABLED: True
+  EVAL_PERIOD: 3000
+
+OUTPUT_DIR: "checkpoints/voc/ablation/split3/5shot_CL_IoU"
